@@ -4,6 +4,7 @@ import sys
 
 
 def ft_command_quest() -> None:
+    print("=== Command Quest ===")
     argc = len(sys.argv)
 
     if argc < 2:
