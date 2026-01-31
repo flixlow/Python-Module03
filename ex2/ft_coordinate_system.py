@@ -3,16 +3,18 @@
 import math
 
 
-def distance(src: tuple = (0, 0, 0), dest: tuple = (0, 0, 0)) -> None:
+def distance(dest: tuple, src: tuple = (0, 0, 0)) -> str:
     x1, y1, z1 = src
     x2, y2, z2 = dest
     ret = math.sqrt((x1 - x2)**2 + (y1 - y2)**2 + (z1 - z2)**2)
-    print(f"Distance between {dest} and {src}: {ret:.2f}")
+    return f"Distance between {src} and {dest}: {ret:.2f}"
 
 
-def parsing_coordinates(unchecked_coordinates: str) -> tuple:
+def parsing_coordinates(unchecked_coordinates: str) -> tuple | None:
     try:
         coordinates_list = unchecked_coordinates.split(",")
+        if len(coordinates_list) != 3:
+            raise ValueError("The number of values ​expected is (3)")
         x = int(coordinates_list[0])
         y = int(coordinates_list[1])
         z = int(coordinates_list[2])
@@ -28,16 +30,17 @@ def ft_coordinate_system():
     print()
     pos = parsing_coordinates("10,20,5")
     print(f"Position created: {pos}")
-    distance(pos)
+    print(distance(pos))
     print()
     coords = "3,4,0"
     print(f"Parsing coordinates: \"{coords}\"")
     pos = parsing_coordinates(coords)
     print(f"Parsed position: {pos}")
-    distance(pos)
+    print(distance(pos))
     print()
     coords = "abc,def,ghi"
     print(f"Parsing coordinates: \"{coords}\"")
+    parsing_coordinates(coords)
     print()
     (x, y, z) = pos
     print("Unpacking demonstration:")
@@ -47,20 +50,3 @@ def ft_coordinate_system():
 
 if __name__ == "__main__":
     ft_coordinate_system()
-
-# === Game Coordinate System ===
-# Position : (10, 20, 5)
-# Distance between (0, 0, 0) and (10, 20, 5): 22.91
-
-# Parsing coordinates: "3,4,0"
-# Parsed position: (3, 4, 0)
-# Distance between (0, 0, 0) and (3, 4, 0): 5.0
-
-# Parsing invalid coordinates: "abc,def,ghi"
-# Error parsing coordinates: invalid literal for int() with base 10: 'abc'
-# Error details - Type: ValueError, Args: ("invalid literal for int() with
-# base 10: 'abc'",)
-
-# Unpacking demonstration:
-# Player at x=3, y=4, z=0
-# Coordinates: X=3, Y=4, Z=0
