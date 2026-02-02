@@ -16,9 +16,10 @@ def ft_inventory_system() -> None:
     print(f"Unique item types: {len(inventory)}")
 
     print("\n=== Current Inventory ===")
-    sorted_inventory = sorted(inventory.items(), key=lambda x: x[1], reverse=True)
-    for key in sorted_inventory:
-        print(f"{key[0]}: {key[1]} ({key[1] / total * 100:.1f}%)")
+    sorted_inventory = sorted(
+        inventory.items(), key=lambda x: x[1], reverse=True)
+    for key, value in sorted_inventory:
+        print(f"{key}: {value} ({key / total * 100:.1f}%)")
 
     print("\n=== Inventory Statistics ===")
     maxi = max(inventory, key=inventory.get)
