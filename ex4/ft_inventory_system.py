@@ -19,7 +19,7 @@ def ft_inventory_system() -> None:
     sorted_inventory = sorted(
         inventory.items(), key=lambda x: x[1], reverse=True)
     for key, value in sorted_inventory:
-        print(f"{key}: {value} ({key / total * 100:.1f}%)")
+        print(f"{key}: {value} ({value / total * 100:.1f}%)")
 
     print("\n=== Inventory Statistics ===")
     maxi = max(inventory, key=inventory.get)
@@ -34,7 +34,8 @@ def ft_inventory_system() -> None:
     print(f"Scarce: {scarce_items}")
 
     print("\n=== Management Suggestions ===")
-    print(f"Restock needed: {[k for k, v in inventory.items() if v < 2]}")
+    restock_needed = [k for k, v in inventory.items() if v < 2]
+    print(f"Restock needed: {restock_needed}")
 
     print("\n=== Dictionary Properties Demo ===")
     print(f"Dictionary keys: {list(inventory.keys())}")
