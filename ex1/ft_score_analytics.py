@@ -4,7 +4,7 @@ import sys
 
 
 def ft_score_analytics() -> str:
-    output = []
+    output: list[str] = []
     scores: list = []
     output.append("=== Player Score Analytics ===")
     argc = len(sys.argv)
